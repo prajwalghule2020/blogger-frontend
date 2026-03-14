@@ -1,10 +1,10 @@
 import { BackgroundPaths } from "@/components/ui/background-paths";
-import Hero from "@/components/Hero";
-import WorkflowPipeline from "@/components/WorkflowPipeline";
-import BentoFeatures from "@/components/BentoFeatures";
-import StatsMarquee from "@/components/StatsMarquee";
-import CTASection from "@/components/CTASection";
-import { Footer } from "@/components/Footer";
+import Hero from "@/components/landing/Hero";
+import WorkflowPipeline from "@/components/landing/WorkflowPipeline";
+import BentoFeatures from "@/components/landing/BentoFeatures";
+import StatsMarquee from "@/components/landing/StatsMarquee";
+import CTASection from "@/components/landing/CTASection";
+import { Footer } from "@/components/landing/Footer";
 
 export default function Home() {
   return (

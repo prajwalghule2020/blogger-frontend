@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import { GetStartedButton } from "@/components/ui/get-started-button";
 import { ShimmerButton } from "@/components/ui/shimmer-button";
+import Link from "next/link";
 
 interface CTAProps {
     badge?: {
@@ -114,7 +115,9 @@ export default function CTASection({
 
                 {/* Action Buttons */}
                 <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-center justify-center gap-4 z-10 mt-4">
-                    <GetStartedButton />
+                    <Link href="/sign-up">
+                        <GetStartedButton />
+                    </Link>
 
                     <Button
                         variant="ghost"
@@ -125,11 +128,13 @@ export default function CTASection({
                         Talk to Sales
                     </Button>
                     
-                    <ShimmerButton className="shadow-2xl px-8 py-4 h-auto">
-                        <span className="whitespace-pre-wrap text-center text-sm font-semibold leading-none tracking-tight text-white">
-                            Talk to Sales
-                        </span>
-                    </ShimmerButton>
+                    <Link href="/sign-up">
+                        <ShimmerButton className="shadow-2xl px-8 py-4 h-auto">
+                            <span className="whitespace-pre-wrap text-center text-sm font-semibold leading-none tracking-tight text-white">
+                                Talk to Sales
+                            </span>
+                        </ShimmerButton>
+                    </Link>
                 </motion.div>
 
                 <motion.p variants={itemVariants} className="text-[11px] text-white/25 mt-2 z-10">

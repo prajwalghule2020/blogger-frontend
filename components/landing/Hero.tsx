@@ -3,10 +3,29 @@
 import { useState } from "react";
 import { Search, Activity, Network, Edit3, Bot, Play } from "lucide-react";
 import { ShimmerButton } from "@/components/ui/shimmer-button";
+import Link from "next/link";
+import { authClient } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
 
 export default function Hero() {
     const [isFocused, setIsFocused] = useState(false);
     const [inputValue, setInputValue] = useState("");
+    const { data: session } = authClient.useSession();
+    const router = useRouter();
+
+    const handleStart = (e: React.MouseEvent) => {
+        e.preventDefault();
+        
+        if (session) {
+            if (inputValue.trim()) {
+                router.push(`/orchestration?topic=${encodeURIComponent(inputValue.trim())}`);
+            } else {
+                router.push("/orchestration");
+            }
+        } else {
+            router.push("/sign-up");
+        }
+    };
 
     return (
         <div className="flex flex-col items-center w-full max-w-5xl px-4 sm:px-0">
@@ -109,12 +128,14 @@ export default function Hero() {
                         {/* Bottom Section - Translucent */}
                         <div className="px-5 sm:px-7 py-3 sm:py-4 flex items-center justify-between">
                             <div className="flex items-center gap-3">
-                                <ShimmerButton className="shadow-2xl px-5 sm:px-6 py-2 sm:py-2.5 h-auto transition-transform duration-300 hover:scale-[1.03] active:scale-[0.97]">
-                                    <span className="whitespace-pre-wrap text-center text-[12px] sm:text-[13px] font-semibold leading-none tracking-tight text-white flex items-center justify-center gap-1.5 sm:gap-2">
-                                        Start
-                                        <Play className="w-3.5 h-3.5 fill-white" />
-                                    </span>
-                                </ShimmerButton>
+                                <div onClick={handleStart} className="cursor-pointer">
+                                    <ShimmerButton className="shadow-2xl px-5 sm:px-6 py-2 sm:py-2.5 h-auto transition-transform duration-300 hover:scale-[1.03] active:scale-[0.97]">
+                                        <span className="whitespace-pre-wrap text-center text-[12px] sm:text-[13px] font-semibold leading-none tracking-tight text-white flex items-center justify-center gap-1.5 sm:gap-2">
+                                            Start
+                                            <Play className="w-3.5 h-3.5 fill-white" />
+                                        </span>
+                                    </ShimmerButton>
+                                </div>
                             </div>
                         </div>
                     </div>
