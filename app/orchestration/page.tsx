@@ -28,40 +28,7 @@ interface PhaseData {
     seoScore: number | null
 }
 
-// ─── SSE Parser ─────────────────────────────────────────────────────
-function parseSSEChunk(
-    buffer: string,
-    onEvent: (eventType: string, data: string) => void
-): string {
-    // SSE spec: events separated by blank lines (\n\n)
-    // Each event has lines like "event: xxx" and "data: xxx"
-    const parts = buffer.split("\n\n")
-    // The last part might be incomplete, keep it in buffer
-    const remainder = parts.pop() || ""
 
-    for (const block of parts) {
-        if (!block.trim()) continue
-        const lines = block.split("\n")
-        let eventType = "message"
-        let dataLines: string[] = []
-
-        for (const line of lines) {
-            if (line.startsWith("event:")) {
-                eventType = line.slice(6).trim()
-            } else if (line.startsWith("data:")) {
-                dataLines.push(line.slice(5).trim())
-            } else if (line.startsWith(":")) {
-                // SSE comment, ignore
-            }
-        }
-
-        if (dataLines.length > 0) {
-            onEvent(eventType, dataLines.join("\n"))
-        }
-    }
-
-    return remainder
-}
 
 // ─── Main Component ─────────────────────────────────────────────────
 function OrchestrationContent() {
@@ -92,9 +59,10 @@ function OrchestrationContent() {
     })
 
     const [finalDraft, setFinalDraft] = useState<string | null>(null)
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const [editorReport, setEditorReport] = useState<any>(null)
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const [scoredSources, setScoredSources] = useState<any[]>([])
-    const [blogOutline, setBlogOutline] = useState<any>(null)
     const [errorMessage, setErrorMessage] = useState<string | null>(null)
     const [elapsedTime, setElapsedTime] = useState(0)
     const [threadId, setThreadId] = useState<string | null>(null)
@@ -118,6 +86,7 @@ function OrchestrationContent() {
 
     // ─── Handle an SSE event ────────────────────────────────────────
     const handleSSEEvent = useCallback((eventType: string, rawData: string) => {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         let data: any
         try {
             data = JSON.parse(rawData)
@@ -169,7 +138,6 @@ function OrchestrationContent() {
             } else if (nodeName === "outline_agent") {
                 setActiveStep(4)
                 if (data.data && typeof data.data === "object") {
-                    setBlogOutline(data.data)
                     setPhaseData(prev => ({
                         ...prev,
                         outlineTitle: data.data.title ?? prev.outlineTitle,
@@ -371,7 +339,7 @@ function OrchestrationContent() {
         }
     }
 
-    const renderStepIcon = (stepNum: number, Icon: any) => {
+    const renderStepIcon = (stepNum: number, Icon: React.ElementType) => {
         if (activeStep > stepNum) {
             return (
                 <div className="absolute -left-[13px] size-6 rounded-full bg-primary-custom flex items-center justify-center ring-4 ring-surface-dark shadow-sm shadow-primary-custom/30">
@@ -393,7 +361,7 @@ function OrchestrationContent() {
         }
     }
 
-    const renderPhaseStep = (stepNum: number, label: string, title: string, Icon: any, isLast: boolean = false) => (
+    const renderPhaseStep = (stepNum: number, label: string, title: string, Icon: React.ElementType, isLast: boolean = false) => (
         <div className={`group relative flex items-start gap-4 ${!isLast ? 'pb-8 border-l-2' : ''} ml-3 ${activeStep >= stepNum ? 'border-primary-custom' : 'border-border-dark'}`}>
             {renderStepIcon(stepNum, Icon)}
             <div className={`flex flex-col gap-1 pl-4 w-full ${activeStep < stepNum ? 'opacity-60' : ''}`}>

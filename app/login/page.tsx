@@ -80,7 +80,7 @@ export default function LoginPage() {
 
                 <div className="mt-8 pt-6 border-t border-border-dark text-center">
                     <p className="text-sm text-slate-400">
-                        Don't have an account?{" "}
+                        Don&apos;t have an account?{" "}
                         <a href="#" className="font-bold text-coral hover:text-coral-light transition-colors">
                             Request access
                         </a>

@@ -158,7 +158,7 @@ export default function CommandCenterPage() {
                                     <div className="md:col-span-2 flex items-center justify-between py-2 px-4 bg-primary-custom/5 rounded-lg border border-primary-custom/10">
                                         <div className="flex items-center gap-2">
                                             <Info className="text-primary-custom w-4 h-4" />
-                                            <span className="text-xs text-slate-400">These settings will influence the AI's research depth and narrative structure.</span>
+                                            <span className="text-xs text-slate-400">These settings will influence the AI&apos;s research depth and narrative structure.</span>
                                         </div>
                                         <div className="flex gap-4">
                                             <label className="flex items-center gap-2 cursor-pointer group">
@@ -194,7 +194,7 @@ export default function CommandCenterPage() {
                                     <PenTool className="w-6 h-6" />
                                 </div>
                                 <h3 className="text-lg font-bold text-white">Brand Voice Sync</h3>
-                                <p className="text-slate-400 text-sm leading-relaxed">Adapts perfectly to your company's unique tone, whether it's academic, casual, or technical.</p>
+                                <p className="text-slate-400 text-sm leading-relaxed">Adapts perfectly to your company&apos;s unique tone, whether it&apos;s academic, casual, or technical.</p>
                             </div>
 
                             <div className="bg-surface-dark border border-border-dark dark:border-[#30363d] p-8 rounded-2xl flex flex-col gap-4">
@@ -202,7 +202,7 @@ export default function CommandCenterPage() {
                                     <MousePointerClick className="w-6 h-6" />
                                 </div>
                                 <h3 className="text-lg font-bold text-white">SEO Mastery</h3>
-                                <p className="text-slate-400 text-sm leading-relaxed">Semantic analysis ensures your post is primed for Google's first page from the very first draft.</p>
+                                <p className="text-slate-400 text-sm leading-relaxed">Semantic analysis ensures your post is primed for Google&apos;s first page from the very first draft.</p>
                             </div>
 
                         </div>

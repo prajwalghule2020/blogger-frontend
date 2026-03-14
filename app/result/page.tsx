@@ -9,17 +9,21 @@ export default function ResultPage() {
     const [draft, setDraft] = useState<string | null>(null)
     const [topic, setTopic] = useState<string | null>(null)
     const [copied, setCopied] = useState(false)
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const [editorReport, setEditorReport] = useState<any>(null)
     const [sourcesCount, setSourcesCount] = useState<number>(0)
 
     useEffect(() => {
         const savedDraft = sessionStorage.getItem("pipeline_final_draft")
         const savedTopic = sessionStorage.getItem("pipeline_topic")
+        
+        // eslint-disable-next-line react-hooks/set-state-in-effect
+        if (savedDraft) setDraft(savedDraft)
+        if (savedTopic) setTopic(savedTopic)
+        
         const savedReport = sessionStorage.getItem("pipeline_editor_report")
         const savedSources = sessionStorage.getItem("pipeline_scored_sources")
 
-        if (savedDraft) setDraft(savedDraft)
-        if (savedTopic) setTopic(savedTopic)
         if (savedReport) {
             try { setEditorReport(JSON.parse(savedReport)) } catch { /* ignore */ }
         }

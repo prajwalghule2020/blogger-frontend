@@ -3,7 +3,6 @@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
-import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { GetStartedButton } from "@/components/ui/get-started-button";
 import { ShimmerButton } from "@/components/ui/shimmer-button";

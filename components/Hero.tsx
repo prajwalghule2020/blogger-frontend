@@ -1,8 +1,7 @@
 "use client"
 
 import { useState } from "react";
-import { Search, Activity, Network, Edit3, Bot, Play, ChevronDown } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Search, Activity, Network, Edit3, Bot, Play } from "lucide-react";
 import { ShimmerButton } from "@/components/ui/shimmer-button";
 
 export default function Hero() {

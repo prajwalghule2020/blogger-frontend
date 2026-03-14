@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { ChevronRight } from "lucide-react";
 import * as React from "react";
 
-export interface GetStartedButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
+export type GetStartedButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 export function GetStartedButton(props: GetStartedButtonProps) {
   return (
